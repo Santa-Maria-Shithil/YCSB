@@ -194,7 +194,7 @@ public class StatusThread extends Thread {
     boolean alldone = false;
     long now = System.nanoTime();
 
-    System.out.println("inside waitforclientsutil");
+    System.err.println("inside waitforclientsutil");
 
     while (!alldone && now < deadline) {
       try {
