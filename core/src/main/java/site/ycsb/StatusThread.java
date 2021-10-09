@@ -197,17 +197,18 @@ public class StatusThread extends Thread {
     //String msg="";
 
     System.err.println("inside waitforclientsutil");
+    for (ClientThread t : clients) {
+      if(t.getOpsTodo() == 0){
+        System.err.println("inside waiting loop");
+        //msg= startTimeNanos - latency;
+        System.err.println(startTimeNanos - latency);
+      }
+    }
 
     while (!alldone && now < deadline) {
       try {
         alldone = completeLatch.await(deadline - now, TimeUnit.NANOSECONDS);
-        for (ClientThread t : clients) {
-          if(t.getOpsTodo() == 0){
-            System.err.println("inside waiting loop");
-            //msg= startTimeNanos - latency;
-            System.err.println(startTimeNanos - latency);
-          }
-        }
+
       } catch (InterruptedException ie) {
         // If we are interrupted the thread is being asked to shutdown.
         // Return true to indicate that and reset the interrupt state
