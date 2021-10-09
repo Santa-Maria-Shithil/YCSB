@@ -104,6 +104,9 @@ public class OneMeasurementHistogram extends OneMeasurement {
     }
     operations++;
     totallatency += latency;
+
+    System.err.println(latency);
+  
     totalsquaredlatency += ((double) latency) * ((double) latency);
     windowoperations++;
     windowtotallatency += latency;
