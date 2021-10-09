@@ -194,6 +194,8 @@ public class StatusThread extends Thread {
     boolean alldone = false;
     long now = System.nanoTime();
 
+     System.err.println("inside waitforclientsutil");
+
     while (!alldone && now < deadline) {
       try {
         alldone = completeLatch.await(deadline - now, TimeUnit.NANOSECONDS);
