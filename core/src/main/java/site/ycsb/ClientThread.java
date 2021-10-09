@@ -80,7 +80,8 @@ public class ClientThread implements Runnable {
     threadid = threadId;
   }
 
-  public void getStartTime() {
+  /*--------my code for timer-----------*/
+  public long getStartTime() {
     return startTimeNanos;
   }
 
