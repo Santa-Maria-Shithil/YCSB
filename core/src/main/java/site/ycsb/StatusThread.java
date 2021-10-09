@@ -201,7 +201,7 @@ public class StatusThread extends Thread {
       if(t.getOpsTodo() == 0){
         System.err.println("inside waiting loop");
         //msg= startTimeNanos - latency;
-        System.err.println(now - t.startTimeNanos);
+        System.err.println(now - t.getStartTime());
       }
     }
 

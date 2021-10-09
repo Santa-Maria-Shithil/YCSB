@@ -80,6 +80,10 @@ public class ClientThread implements Runnable {
     threadid = threadId;
   }
 
+  public void getStartTime() {
+    return startTimeNanos;
+  }
+
   public void setThreadCount(final int threadCount) {
     threadcount = threadCount;
   }
