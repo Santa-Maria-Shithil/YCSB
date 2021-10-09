@@ -43,6 +43,7 @@ public class ClientThread implements Runnable {
   private Object workloadstate;
   private Properties props;
   private long targetOpsTickNs;
+  private long startTimeNanos;
   private final Measurements measurements;
 
   /**
@@ -62,6 +63,8 @@ public class ClientThread implements Runnable {
     this.dotransactions = dotransactions;
     this.workload = workload;
     this.opcount = opcount;
+    this.startTimeNanos = System.nanoTime();
+    
     opsdone = 0;
     if (targetperthreadperms > 0) {
       targetOpsPerMs = targetperthreadperms;

@@ -117,7 +117,7 @@ public class StatusThread extends Thread {
         measureJVM();
       }
 
-      alldone = waitForClientsUntil(deadline, startTimeNanos);
+      alldone = waitForClientsUntil(deadline);
 
       startIntervalMs = nowMs;
       deadline += sleeptimeNs;
@@ -190,24 +190,25 @@ public class StatusThread extends Thread {
    * @param deadline The current deadline.
    * @return True if all of the clients completed.
    */
-  private boolean waitForClientsUntil(long deadline, final long startTimeNanos) {
+  private boolean waitForClientsUntil(long deadline) {
     boolean alldone = false;
     long now = System.nanoTime();
-    long latency= System.nanoTime();
+    //long latency= System.nanoTime();
     //String msg="";
 
     System.err.println("inside waitforclientsutil");
+    for (ClientThread t : clients) {
+      if(t.getOpsTodo() == 0){
+        System.err.println("inside waiting loop");
+        //msg= startTimeNanos - latency;
+        System.err.println(now - t.startTimeNanos);
+      }
+    }
 
     while (!alldone && now < deadline) {
       try {
         alldone = completeLatch.await(deadline - now, TimeUnit.NANOSECONDS);
-        for (ClientThread t : clients) {
-          if(t.getOpsTodo() == 0){
-            System.err.println("inside waiting loop");
-            //msg= startTimeNanos - latency;
-            System.err.println(latency - startTimeNanos);
-          }
-        }
+
       } catch (InterruptedException ie) {
         // If we are interrupted the thread is being asked to shutdown.
         // Return true to indicate that and reset the interrupt state
