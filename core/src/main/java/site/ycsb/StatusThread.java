@@ -203,10 +203,8 @@ public class StatusThread extends Thread {
         alldone = completeLatch.await(deadline - now, TimeUnit.NANOSECONDS);
         for (ClientThread t : clients) {
           System.err.println("inside waiting loop");
-          if(!t.isAlive()){
-            msg=t.getName()+" "+startTimeNanos-latency;
-            System.err.println(msg);
-          }
+          msg=t.threadid+" "+startTimeNanos-latency;
+          System.err.println(msg);
         }
       } catch (InterruptedException ie) {
         // If we are interrupted the thread is being asked to shutdown.
