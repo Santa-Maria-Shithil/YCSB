@@ -194,7 +194,7 @@ public class StatusThread extends Thread {
     boolean alldone = false;
     long now = System.nanoTime();
     long latency= System.nanoTime();
-    String msg="";
+    //String msg="";
 
     System.err.println("inside waitforclientsutil");
 
@@ -202,9 +202,11 @@ public class StatusThread extends Thread {
       try {
         alldone = completeLatch.await(deadline - now, TimeUnit.NANOSECONDS);
         for (ClientThread t : clients) {
-          System.err.println("inside waiting loop");
-          msg=t.threadid+" "+startTimeNanos-latency;
-          System.err.println(msg);
+          if(t.getOpsTodo() == 0){
+            System.err.println("inside waiting loop");
+            //msg= startTimeNanos - latency;
+            System.err.println(startTimeNanos - latency);
+          }
         }
       } catch (InterruptedException ie) {
         // If we are interrupted the thread is being asked to shutdown.
