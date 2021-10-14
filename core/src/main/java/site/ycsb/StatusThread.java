@@ -196,14 +196,14 @@ public class StatusThread extends Thread {
     //long latency= System.nanoTime();
     //String msg="";
 
-    System.err.println("inside waitforclientsutil");
+    /*System.err.println("inside waitforclientsutil");
     for (ClientThread t : clients) {
       if(t.getOpsTodo() == 0){
         System.err.println("inside waiting loop");
         //msg= startTimeNanos - latency;
         System.err.println(now - t.getStartTime());
       }
-    }
+    }*/
 
     while (!alldone && now < deadline) {
       try {
