@@ -100,6 +100,9 @@ public class OneMeasurementTimeSeries extends OneMeasurement {
     count++;
     sum += latency;
     totallatency += latency;
+
+    System.err.println("Latency: " + latency);
+
     operations++;
     windowoperations++;
     windowtotallatency += latency;
