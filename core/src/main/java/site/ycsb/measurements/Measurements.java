@@ -182,7 +182,7 @@ public class Measurements {
    */
   public void measure(String operation, int latency) {
     if (operation == "READ") {
-      System.err.println(operation + latency);
+      System.err.println(operation + " " + latency);
     }
     if (measurementInterval == 1) {
       return;
