@@ -181,8 +181,9 @@ public class Measurements {
    * value.
    */
   public void measure(String operation, int latency) {
-    if (operation == "READ")
+    if (operation == "READ") {
       System.err.println(operation + latency);
+    }
     if (measurementInterval == 1) {
       return;
     }
